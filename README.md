@@ -10,6 +10,7 @@ Scripts and Notes too small for their own project.
 
 ## Notes
 
+- [`PromptHelper.md`](PromptHelper.md) — A single pasteable prompt that interviews you with six short questions and gives back a structured Anthropic-format prompt you can use in any AI chat tool. Targeted at non-technical users.
 - [`SyncToGitLab.md`](SyncToGitLab.md) — Setting up a GitHub Actions workflow that mirrors this repo (or any repo) to a GitLab remote, including prerequisites and common errors.
 
 ## Compatibility
