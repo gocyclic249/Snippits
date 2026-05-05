@@ -10,6 +10,6 @@ $user.Properties["givenname"]
 $user.Properties["sn"]
 $user.Properties["mail"]
 $user.Properties["employeeid"]
-Get-WmiObject -Class Win32_ComputerSystem | Select-Object Manufacturer, Model
-Get-WmiObject -Class Win32_CDROMDrive | Select-Object Manufacturer, Model
-Get-WmiObject -Class Win32_DiskDrive | Select-Object Manufacturer, Model
+Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object Manufacturer, Model
+Get-CimInstance -ClassName Win32_CDROMDrive | Select-Object Manufacturer, Model
+Get-CimInstance -ClassName Win32_DiskDrive | Select-Object Manufacturer, Model

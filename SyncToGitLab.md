@@ -1,14 +1,16 @@
-## 1. Save `GITLAB_TOKEN` with Repo Write Permissions in Secrets.
+# Sync to GitLab
 
-## 2. Safe `GITLAB_REPO_URL` in Secrets in the format `web.git.mil/User/Project.git`
+## 1. Save `GITLAB_TOKEN` with Repo Write Permissions in Secrets
 
-## 3. Create a file called .github/workflows/mirror.yml in github with the following code
+## 2. Save `GITLAB_REPO_URL` in Secrets in the format `web.git.mil/User/Project.git`
 
-``` 
+## 3. Create a file called `.github/workflows/mirror.yml` in github with the following code
+
+```yaml
 name: Mirror to GitLab
- 
+
 on: [push, delete]
- 
+
 jobs:
   mirror:
     runs-on: ubuntu-latest
@@ -16,11 +18,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
- 
+
       - name: Push to GitLab
         run: |
           git push --prune https://oauth2:${{ secrets.GITLAB_TOKEN }}@${{ secrets.GITLAB_REPO_URL }} \
             "+refs/heads/*:refs/heads/*" \
             "+refs/tags/*:refs/tags/*"
-
-  ```
+```

@@ -1,0 +1,13 @@
+{
+    // markdownlint-cli2 auto-discovers this file at the repo root.
+    // Disabled rules are listed below with reasoning so a future
+    // contributor can decide whether the rationale still holds.
+
+    "config": {
+        // MD013 (line-length): disabled. Hard-wrapping prose markdown at
+        // 80 chars fights how this repo's docs are typically rendered
+        // (GitHub/GitLab web view, glow, IDE preview) and edited. We
+        // soft-wrap by paragraph instead.
+        "MD013": false
+    }
+}
