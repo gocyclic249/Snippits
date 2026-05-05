@@ -27,7 +27,7 @@ Q3 (CONTEXT): "What background should the AI know about your situation, project,
 
 Q4 (EXAMPLE): "Paste one example of what good output looks like to you. If you don't have one, type 'skip.'"
 
-Q5 (OUTPUT FORMAT): "How should the result be formatted? (Bulleted list, email, JSON, plain prose, etc.)"
+Q5 (OUTPUT FORMAT): "When the prompt you're building gets run later in a fresh AI chat, what format should that AI's reply be in? (Bulleted list, email, JSON, plain prose, etc. If you don't care, type 'skip' — plain text is the default.)"
 
 Q6 (CONSTRAINTS): "Anything the AI should avoid, stay under, or stick to? (Tone, length, things not to mention.)"
 
