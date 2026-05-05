@@ -59,7 +59,7 @@ Do not "port" these to pwsh-on-Linux or replace PnP/DirectoryServices with cross
 - `GITLAB_TOKEN` — GitLab PAT with repo write
 - `GITLAB_REPO_URL` — bare host/path form, e.g. `web.git.mil/User/Project.git` (no scheme, no `oauth2:` prefix — the workflow adds those)
 
-`SyncToGitLab.md` is the human-facing setup guide for the same workflow. If you change one, keep the other in sync (the README inlines the YAML verbatim).
+`SyncToGitLab.md` is the human-facing setup guide for the same workflow and inlines the YAML verbatim. If you change `mirror.yml`, update the inlined copy in `SyncToGitLab.md` to match.
 
 The destination host `web.git.mil` is a DoD GitLab instance, which is why this mirror exists — public dev happens on GitHub, the authoritative copy lives on the `.mil` side.
 
