@@ -1,6 +1,6 @@
 ## 1. Save `GITLAB_TOKEN` with Repo Write Permissions in Secrets.
 
-## 2. Safe `GITLAB_REPO_URL` in Secrets in the format web.git.mil/User/Project.git
+## 2. Safe `GITLAB_REPO_URL` in Secrets in the format `web.git.mil/User/Project.git`
 
 ## 3. Create a file called .github/workflows/mirror.yml in github with the following code
 
