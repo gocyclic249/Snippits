@@ -21,6 +21,12 @@
     The 'live' parameter controls web search:
         0 = no search    1 = basic search    2 = detailed search ("live+" in the GUI)
 
+    The 'conversation_type' parameter controls unclass vs CUI. It is not documented well online.
+        conversation_type = 'CUI' turns conversation CUI and disables search.
+
+    The dataset parameter lets you choose the datasets used; default is none.
+        dataset = "all" You can look these up using the GetArmyAskSageInfo.ps1
+
     Personas, models, and datasets can be enumerated with GetArmyAskSageInfo.ps1
     in this repository.
 #>

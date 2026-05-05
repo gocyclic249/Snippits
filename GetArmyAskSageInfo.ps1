@@ -49,7 +49,7 @@ try {
 Write-Host "`n== Datasets ==" -ForegroundColor Cyan
 try {
     $r = Invoke-RestMethod -Uri "$base/get-datasets" -Method Post -Headers $headers
-    $r.response | Select-Object name, status, token_count, file_count, description | Format-Table -AutoSize -Wrap
+    $r.response | Format-Table -AutoSize -Wrap
 } catch {
     Write-Warning "Failed to fetch datasets: $($_.Exception.Message)"
 }
