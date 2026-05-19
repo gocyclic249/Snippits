@@ -13,7 +13,11 @@ A blank target project must already exist on `web.git.mil` before this workflow 
 ```yaml
 name: Mirror to GitLab
 
-on: [push, delete]
+on:
+  push:
+    branches:
+      - main
+  delete:
 
 jobs:
   mirror:
