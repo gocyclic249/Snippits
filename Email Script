@@ -1,5 +1,4 @@
-#Original: FRIEDMAN, ANDREW H CTR USAF HAF AF/AF/A4CP
-#Updated: DECATO, SETH A CTR USAF AFMC AFLCMC/ROAEA
+#I am not the original author but am not sure if they want their name on it. I have the name saved if there are questions. 
 
 # Load required assemblies
 Add-Type -AssemblyName System.Windows.Forms
