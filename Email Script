@@ -1,4 +1,4 @@
-#I am not the original author but am not sure if they want their name on it. I have the name saved if there are questions. 
+#Original Author Seth DeCato
 
 # Load required assemblies
 Add-Type -AssemblyName System.Windows.Forms
