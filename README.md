@@ -7,6 +7,7 @@ Scripts and Notes too small for their own project.
 - [`DVRInfoForDLP.ps1`](DVRInfoForDLP.ps1) — Gathers the device, AD profile, and host hardware info required for an Air Force / Space Force DLP (Data Loss Prevention) waiver. Windows + domain-joined.
 - [`GetArmyAskSageInfo.ps1`](GetArmyAskSageInfo.ps1) — Lists the models, personas, and datasets available on the Army GenAI ("Ask Sage") API. Requires `$env:GENAI_API_TOKEN`.
 - [`ArmyAskSageMinimal.ps1`](ArmyAskSageMinimal.ps1) — Minimal one-shot example of querying the Ask Sage API. Requires `$env:GENAI_API_TOKEN`.
+- [`Email Script`](<Email Script>) — Windows Forms GUI that reads `.txt` email lists (one address per line) from a configurable folder and auto-types each address via `SendKeys`. Edit `$listDirectory` at the top before running. Windows only.
 
 ## Notes
 
