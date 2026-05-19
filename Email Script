@@ -1,0 +1,112 @@
+#Original: FRIEDMAN, ANDREW H CTR USAF HAF AF/AF/A4CP
+#Updated: DECATO, SETH A CTR USAF AFMC AFLCMC/ROAEA
+
+# Load required assemblies
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+
+# Define the directory where your email list text files are stored
+#Email files are just a list of emails, one on each line.  Save the file as *.txt format.
+$listDirectory = "<span style="background-color:#F4A593">C:\Users\UserName\Documents\emailLists\</span>"
+
+
+
+# Initialize the Main Form
+$mainForm = New-Object System.Windows.Forms.Form
+$mainForm.Text = "Email Sender Utility"
+# Increased width to 450 to give the text more room to breathe
+$mainForm.Size = New-Object System.Drawing.Size(450, 280)
+$mainForm.StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
+$mainForm.TopMost = $true
+
+# Create Label for the Dropdown
+$lblSelect = New-Object System.Windows.Forms.Label
+$lblSelect.Text = "Select Email List:"
+$lblSelect.Location = New-Object System.Drawing.Point(20, 25)
+$lblSelect.AutoSize = $true
+$mainForm.Controls.Add($lblSelect)
+
+# Create the Dropdown (ComboBox)
+$cmbLists = New-Object System.Windows.Forms.ComboBox
+$cmbLists.Location = New-Object System.Drawing.Point(130, 22)
+$cmbLists.Width = 180
+$cmbLists.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$mainForm.Controls.Add($cmbLists)
+
+# Defensively populate the ComboBox with only .txt files
+if (Test-Path -Path $listDirectory) {
+    $emailFiles = Get-ChildItem -Path $listDirectory -Filter "*.txt"
+    foreach ($file in $emailFiles) {
+        $cmbLists.Items.Add($file.Name) | Out-Null
+    }
+}
+else {
+    Write-Output "Warning: Directory not found - $listDirectory`r`n"
+}
+
+# Create the Start Button
+$btnStart = New-Object System.Windows.Forms.Button
+$btnStart.Text = "Load and Send"
+$btnStart.Location = New-Object System.Drawing.Point(130, 60)
+$btnStart.Width = 120
+$mainForm.Controls.Add($btnStart)
+
+# Define the Instructions Label using a here-string for clean formatting
+$instructionText = @"
+1. Select the email list you want to use.
+
+2. Open the window/text field where you want to place the emails
+
+3. Click Load and Send
+
+4. Place the cursor in the text field then wait 5 seconds. The tool will auto write each email.
+"@
+
+$lblInstructions = New-Object System.Windows.Forms.Label
+$lblInstructions.Text = $instructionText
+$lblInstructions.Location = New-Object System.Drawing.Point(20, 100)
+$lblInstructions.AutoSize = $true
+# Setting MaximumSize forces the label to wrap text when it reaches 400 pixels wide
+$lblInstructions.MaximumSize = New-Object System.Drawing.Size(400, 0) 
+$mainForm.Controls.Add($lblInstructions)
+
+# Define the Button Click Event
+$btnStart.Add_Click({
+    # Defensive check: Ensure a list was actually selected
+    if ([string]::IsNullOrEmpty($cmbLists.SelectedItem)) {
+        [System.Windows.Forms.MessageBox]::Show("Please select an email list from the dropdown.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error) | Out-Null
+        return
+    }
+
+    # Construct the full path and read contents
+    $selectedFile = Join-Path -Path $listDirectory -ChildPath $cmbLists.SelectedItem
+
+    # UPDATED: Read the file, but safely filter out any blank lines so it doesn't send empty ENTER keystrokes
+    $emails = Get-Content -Path $selectedFile | Where-Object { ![string]::IsNullOrWhiteSpace($_) }
+
+    Write-Output "Loaded $($emails.Count) emails from $($cmbLists.SelectedItem). Click into the share box NOW.`r`n"
+
+    # Optional: Minimize the form so it gets out of the user's way during the 5 second window
+    $mainForm.WindowState = [System.Windows.Forms.FormWindowState]::Minimized
+
+    # Wait for the user to click into the target window
+    Start-Sleep -Seconds 5
+
+    # Iterate safely through the list
+    foreach ($email in $emails) {
+        [System.Windows.Forms.SendKeys]::SendWait($email)
+        Start-Sleep -Milliseconds 1
+
+        [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+        Start-Sleep -Milliseconds 5
+    }
+
+    Write-Output "Done processing emails.`r`n"
+
+    # Restore the form when finished
+    $mainForm.WindowState = [System.Windows.Forms.FormWindowState]::Normal
+})
+
+# Display the GUI
+$mainForm.ShowDialog() | Out-Null
+ 
