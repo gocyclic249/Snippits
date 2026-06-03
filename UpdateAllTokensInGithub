@@ -1,0 +1,2 @@
+gh repo list YourUserName --limit 1000 --json name -q '.[].name' | while IFS= read -r repo; do   echo "Setting secret for: $repo";   gh secret set NAMEOFSECRET --body "VALUEOFSECRET" --repo "gocyclic249/$repo"; done
+
