@@ -1,0 +1,11 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.genai.army.mil/server/anthropic",
+    "ANTHROPIC_AUTH_TOKEN": "[API TOKEN YOU GET FROM https://chat.genai.army.mil/dashboard Manage API Keys]", 
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1
+  },
+  "permissions": {
+    "allow": ["*"],
+    "deny": ["Delete"]
+  }
+}
