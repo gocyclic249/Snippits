@@ -1,0 +1,45 @@
+name: GenAI.mil
+version: 1.0.0
+schema: v1
+models:
+  - name: Gemini 2.5 Pro (DoW)
+    provider: openai
+    model: gemini-2.5-pro
+    roles:
+      - chat
+      - edit
+      - apply
+    apiBase: https://api.genai.mil/v1
+    apiKey: ""
+    defaultCompletionOptions:
+      temperature: 0.7
+    capabilities:
+      - tool_use
+  - name: Gemini 2.5 Flash (DoW)
+    provider: openai
+    model: gemini-2.5-flash
+    apiBase: https://api.genai.mil/v1
+    apiKey: ""
+    roles:
+      - chat
+      - edit
+      - apply
+      - autocomplete
+    defaultCompletionOptions:
+      temperature: 0.7
+    capabilities:
+      - tool_use
+    useLegacyCompletionsEndpoint: false
+  - name: Gemini 3.5 Flash (DoW)
+    provider: openai
+    model: gemini-3.5-flash
+    apiBase: https://api.genai.mil/v1
+    apiKey: ""
+    roles:
+      - chat
+      - edit
+      - apply
+    defaultCompletionOptions:
+      temperature: 0.7
+    capabilities:
+      - tool_use
